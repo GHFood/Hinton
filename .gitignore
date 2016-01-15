@@ -1,5 +1,43 @@
-#Files to ignore
+# --- Files (subdirectories) that hold cached, sample data.
+SampleData/
 
+
+# --- Files that hold secrets ---
+# It's okay (and in fact preferable) to allow GIT to track secrets.h
+# because the actual secrets are only stored in secrets.m
+secrets.swift
+Secrets.swift
+secrets.m
+Secrets.m
+GoogleService-Info.plist
+
+
+# ------------- OSX -----------------
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# Icon must end with two \r
+Icon
+
+
+# Thumbnails
+._*
+
+# Files that might appear on external disk
+.Spotlight-V100
+.Trashes
+
+# Directories potentially created on remote AFP share
+.AppleDB
+.AppleDesktop
+Network Trash Folder
+Temporary Items
+.apdisk
+
+
+
+# ------------------ xcode -----------------
 # Xcode
 #
 build/
@@ -18,8 +56,6 @@ DerivedData
 *.hmap
 *.ipa
 *.xcuserstate
-
-.DS_Store
 
 # CocoaPods
 #

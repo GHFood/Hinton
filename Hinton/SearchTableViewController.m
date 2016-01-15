@@ -3,11 +3,12 @@
 //  Hinton
 //
 //  Created by Brandon Roberts on 5/21/15.
-//  Copyright (c) 2015 BR World. All rights reserved.
+//  Copyright © 2015 Gina Hinton. All rights reserved.
 //
 
 #import "SearchTableViewController.h"
-#import "BackendService.h"
+#import "AppDelegate.h"
+#import "DataService.h"
 
 @interface SearchTableViewController () 
 
@@ -20,19 +21,18 @@
 @implementation SearchTableViewController
 
 - (void)viewDidLoad {
-    [super viewDidLoad];
-  
+  [super viewDidLoad];
+
   [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:@"SearchCell"];
-  
-  [BackendService fetchGenresList:^(NSArray *genresList, NSError *error) {
-    if (error) {
-      NSLog(@"Error: %@", error.localizedDescription);
-    } else {
-      self.allGenres = genresList;
-      self.filteredGenres = genresList;
-    }
+
+  AppDelegate * appDelegate = [UIApplication sharedApplication].delegate;
+  [appDelegate.restaurantDataService fetchGenresList: ^ (NSArray<Genre *> * genresList) {
+    self.allGenres = genresList;
+    self.filteredGenres = genresList;
+  } failure: ^ (NSError * error) {
+    NSLog(@"Error: %@", error.localizedDescription);
   }];
-  
+
 }
 
 #pragma mark - Table view data source

@@ -3,7 +3,7 @@
 //  Hinton
 //
 //  Created by Brandon Roberts on 5/20/15.
-//  Copyright (c) 2015 BR World. All rights reserved.
+//  Copyright © 2015 Gina Hinton. All rights reserved.
 //
 
 #import "GenreParser.h"

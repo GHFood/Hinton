@@ -3,17 +3,16 @@
 //  Hinton
 //
 //  Created by Brandon Roberts on 5/18/15.
-//  Copyright (c) 2015 BR World. All rights reserved.
+//  Copyright © 2015 Gina Hinton. All rights reserved.
 //
 
-#import <UIKit/UIKit.h>
-@class Restaurant;
+#import "DataService.h"
 
-@interface BackendService : NSObject
+@interface BackendService : NSObject <DataService>
 
-+(void)fetchMapPointsForArea:(CGRect)area completionHandler:(void(^)(NSArray *mapPoints, NSError *error))completionHandler;
-+(void)fetchRestaurantForID:(NSString *)restaurantID completionHandler:(void(^)(Restaurant *restaurant, NSError *error))completionHandler;
-+(void)fetchGenresList:(void(^)(NSArray *genresList, NSError *error))completion;
-+(void)fetchMapPointsForGenre:(NSString *)genre completionHandler:(void(^)(NSArray *mapPoints, NSError *error))completionHandler;
+- (void) fetchRestaurantsNearLatitude: (double) latitude longitude: (double) longitude success: ( void (^)(NSArray<NSDictionary *> * jsonArray) ) successHandler failure: ( void (^)(NSError * error) ) failureHandler;
+- (void) fetchRestaurantForID: (NSString *) restaurantID success: ( void (^)(NSDictionary * jsonDictionary) ) successHandler failure: ( void (^)(NSError * error) ) failureHandler;
+- (void) fetchGenresList: ( void (^)(NSArray<NSDictionary *> * jsonArray) ) successHandler failure: ( void (^)(NSError * error) ) failureHandler;
+- (void) fetchMapPointsForGenre: (NSString *) genre success: ( void (^)(NSArray<NSDictionary *> * jsonArray) ) successHandler failure: ( void (^)(NSError * error) ) failureHandler;
 
 @end

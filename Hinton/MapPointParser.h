@@ -3,13 +3,13 @@
 //  Hinton
 //
 //  Created by Brandon Roberts on 5/18/15.
-//  Copyright (c) 2015 BR World. All rights reserved.
+//  Copyright © 2015 Gina Hinton. All rights reserved.
 //
 
 #import <Foundation/Foundation.h>
 
 @interface MapPointParser : NSObject
 
-+(NSArray *)mapPointsFromJSONDictionary:(NSDictionary *)jsonDictionary;
++ (NSArray *) mapPointsFromJSONArray: (NSArray *) jsonArray;
 
 @end
