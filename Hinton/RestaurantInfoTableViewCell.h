@@ -7,11 +7,15 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
 @class Restaurant;
+
 
 @interface RestaurantInfoTableViewCell : UITableViewCell
 
 @property (strong, nonatomic) Restaurant *restaurantToDisplay;
+
 - (void)hoursButtonPressed;
 
 @end

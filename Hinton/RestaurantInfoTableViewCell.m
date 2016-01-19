@@ -28,7 +28,7 @@
 @property (strong, nonatomic) IBOutlet UILabel *menuBlogSeparator;
 @property (strong, nonatomic) IBOutlet UIButton *blogWebsiteButton;
 
-@property (strong, nonatomic) IBOutlet UILabel *restaurantPhoneLabel;
+@property (strong, nonatomic) IBOutlet UIButton *restaurantPhoneButton;
 @property (strong, nonatomic) IBOutlet UILabel *restaurantAddressLabel;
 @property (strong, nonatomic) IBOutlet UIButton *restaurantHoursButton;
 @property (strong, nonatomic) IBOutlet UILabel *recommendedItemLabel;
@@ -53,7 +53,6 @@
 
 @implementation RestaurantInfoTableViewCell
 
-
 - (void)awakeFromNib {
   self.hoursExpanded = false;
 
@@ -62,7 +61,7 @@
 
   self.restaurantNameLabel.text = nil;
   self.restaurantGenreLabel.text = nil;
-  self.restaurantPhoneLabel.text = nil;
+  [self.restaurantPhoneButton setTitle: nil forState:UIControlStateNormal];
   self.restaurantAddressLabel.text = nil;
   [self.restaurantHoursButton setTitle: nil forState: UIControlStateNormal];
   self.restaurantHoursButton.titleLabel.numberOfLines = 0;
@@ -77,8 +76,8 @@
   // Initialize the price indicators with the local currency symbol.
   // This code isn't correct - we should use the location of the restaurant, not the locale of the phone.
   // (i.e. if a British user is looking at a restaurant in France, he should see € not £)
-  // NSLocale * myLocale = [NSLocale currentLocale];
-  // NSString * currencySymbol = [myLocale objectForKey: NSLocaleCurrencySymbol];
+  //      NSLocale * myLocale = [NSLocale currentLocale];
+  //      NSString * currencySymbol = [myLocale objectForKey: NSLocaleCurrencySymbol];
   // Since we don't have a country field in the Address object, just use $ for now.
   NSString * currencySymbol = @"$";
   self.price1.text = currencySymbol;
@@ -86,31 +85,13 @@
   self.price3.text = currencySymbol;
   self.price4.text = currencySymbol;
 
-  //enable interaction for phone number label
-  self.restaurantPhoneLabel.userInteractionEnabled = YES;
-  UITapGestureRecognizer *tapGesture =
-  [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(callPhone:)];
-  [self.restaurantPhoneLabel addGestureRecognizer:tapGesture];
-
   // We have just changed the size of our views, so recalculate layout.
   [self layoutSubviews];
   [self layoutIfNeeded];
 }
 
--(IBAction)callPhone:(id)sender {
-  NSString *formattedPhoneNumberStringPrefix = @"tel:";
-  //format self.restaurantPhone string here for use below
-  //[[UIApplication sharedApplication] openURL:[NSURL URLWithString:s]];
-}
 
-
-- (void)setSelected:(BOOL)selected animated:(BOOL)animated {
-    [super setSelected:selected animated:animated];
-
-    // Configure the view for the selected state
-}
-
--(void)setRestaurantToDisplay:(Restaurant *)restaurantToDisplay {
+- (void)setRestaurantToDisplay:(Restaurant *)restaurantToDisplay {
   _restaurantToDisplay = restaurantToDisplay;
   
   self.restaurantName = restaurantToDisplay.name;
@@ -126,17 +107,16 @@
   self.recommendedItemLabel.text = [self constructRecommendedItemsLabelForItems:restaurantToDisplay.recipes];
   
   [self setupWebsiteButtons];
-  
-  
 }
 
--(void)setRestaurantName:(NSString *)restaurantName {
+
+- (void)setRestaurantName:(NSString *)restaurantName {
   _restaurantName = restaurantName;
   self.restaurantNameLabel.text = restaurantName;
 }
 
--(void)setRestaurantPrice:(NSString *)restaurantPrice {
-  
+
+- (void)setRestaurantPrice:(NSString *)restaurantPrice {
   _restaurantPrice = restaurantPrice;
   NSInteger price = restaurantPrice.integerValue;
 
@@ -144,32 +124,37 @@
   if (price >= 2) { self.price2.textColor = self.greenColor; } else { self.price2.textColor = self.grayColor; }
   if (price >= 3) { self.price3.textColor = self.greenColor; } else { self.price3.textColor = self.grayColor; }
   if (price >= 4) { self.price4.textColor = self.greenColor; } else { self.price4.textColor = self.grayColor; }
-
 }
 
--(void)setRestaurantGenre:(NSArray *)restaurantGenre {
+
+- (void)setRestaurantGenre:(NSArray *)restaurantGenre {
   _restaurantGenre = restaurantGenre;
   self.restaurantGenreLabel.text = [self constructGenreLabelForGenres:self.restaurantGenre];
 }
 
--(void)setMainWebsiteURL:(NSURL *)mainWebsiteURL {
+
+- (void)setMainWebsiteURL:(NSURL *)mainWebsiteURL {
   _mainWebsiteURL = mainWebsiteURL;
 }
 
--(void)setMenuWebsiteURL:(NSURL *)menuWebsiteURL {
+
+- (void)setMenuWebsiteURL:(NSURL *)menuWebsiteURL {
   _menuWebsiteURL = menuWebsiteURL;
 }
 
--(void)setBlogWebsiteURL:(NSURL *)blogWebsiteURL {
+
+- (void)setBlogWebsiteURL:(NSURL *)blogWebsiteURL {
   _blogWebsiteURL = blogWebsiteURL;
 }
 
--(void)setRestaurantPhone:(NSString *)restaurantPhone {
+
+- (void)setRestaurantPhone:(NSString *)restaurantPhone {
   _restaurantPhone = restaurantPhone;
-  self.restaurantPhoneLabel.text = restaurantPhone;
+  [self.restaurantPhoneButton setTitle: restaurantPhone forState:UIControlStateNormal];
 }
 
--(void)setRestaurantAddress:(Address *)restaurantAddress {
+
+- (void)setRestaurantAddress:(Address *)restaurantAddress {
   _restaurantAddress = restaurantAddress;
   
   NSString *addressString = @"";
@@ -187,10 +172,12 @@
   self.restaurantAddressLabel.text = addressString;
 }
 
-- (void) setRestaurantHours: (Hours *) restaurantHours {
+
+- (void)setRestaurantHours:(Hours *)restaurantHours {
   _restaurantHours = restaurantHours;
   [self setupHoursLabel];
 }
+
 
 - (void)hoursButtonPressed {
   // If we are expanded to show hours for all days of the week, then collapse to show only today's hours.
@@ -200,18 +187,8 @@
   [self setupHoursLabel];
 }
 
-- (IBAction)mainWebsiteButtonPressed:(id)sender {
-  [[UIApplication sharedApplication] openURL:self.restaurantToDisplay.mainURL];
-}
-- (IBAction)menuWebsiteButtonPressed:(id)sender {
-  [[UIApplication sharedApplication] openURL:self.restaurantToDisplay.menuURL];
-}
-- (IBAction)blogWebsiteButtonPressed:(id)sender {
-  [[UIApplication sharedApplication] openURL:self.restaurantToDisplay.blogURL];
-}
 
--(NSString *)constructGenreLabelForGenres:(NSArray *)genres {
-  
+- (NSString *)constructGenreLabelForGenres:(NSArray *)genres {
   NSString *genreLabel;
   
   for (NSString *genre in genres) {
@@ -229,8 +206,8 @@
   }
 }
 
--(NSString *)constructRecommendedItemsLabelForItems:(NSArray *)menuItems {
-  
+
+- (NSString *)constructRecommendedItemsLabelForItems:(NSArray *)menuItems {
   NSString *itemsLabel;
   
   for (NSString *item in menuItems) {
@@ -251,8 +228,7 @@
 }
 
 
-- (void) setupWebsiteButtons {
-
+- (void)setupWebsiteButtons {
   bool hasWebsite = (self.mainWebsiteURL && self.mainWebsiteURL.absoluteString.length > 0);
   bool hasMenu = (self.menuWebsiteURL && self.menuWebsiteURL.absoluteString.length > 0);
   bool hasBlog = (self.blogWebsiteURL && self.blogWebsiteURL.absoluteString.length > 0);
@@ -276,11 +252,10 @@
   }
 
   [buttonContainer sizeToFit];
-
 }
 
-- (void) setupHoursLabel {
 
+- (void)setupHoursLabel {
   // Get the user's current calendar.
   NSCalendar * calendar = [NSCalendar currentCalendar];
 

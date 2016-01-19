@@ -7,17 +7,21 @@
 //
 
 #import <UIKit/UIKit.h>
+
+
 @class MapPoint;
+
 
 @protocol RestaurantDetailDelegate <NSObject>
 
--(void)userDidTapCloseButton;
+- (void)userDidTapCloseButton;
 
 @end
+
 
 @interface RestaurantDetailViewController : UIViewController
 
 @property (weak, nonatomic) id<RestaurantDetailDelegate> delegate;
-@property (strong, nonatomic) MapPoint *annotation;
+@property (strong, nonatomic) MapPoint * annotation;
 
 @end

@@ -122,7 +122,7 @@
                                             <rect key="frame" x="0.0" y="0.0" width="592" height="311"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Le Pichet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1U-AH-4f8">
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" text="Le Pichet" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="L1U-AH-4f8">
                                                     <rect key="frame" x="256" y="16" width="80.5" height="21"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="18"/>
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
@@ -188,7 +188,7 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="mainWebsiteButtonPressed:" destination="3hN-QP-dC2" eventType="touchUpInside" id="M1m-wV-ZN2"/>
+                                                                <action selector="mainWebsiteButtonPressed:" destination="3mK-sa-FeI" eventType="touchUpInside" id="r2t-Sd-0wb"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="|" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Vi7-xy-mU8" userLabel="Website|Menu">
@@ -204,7 +204,7 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="menuWebsiteButtonPressed:" destination="3hN-QP-dC2" eventType="touchUpInside" id="GFp-Ua-Vsu"/>
+                                                                <action selector="menuWebsiteButtonPressed:" destination="3mK-sa-FeI" eventType="touchUpInside" id="Vuc-0t-Bv7"/>
                                                             </connections>
                                                         </button>
                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="redraw" horizontalHuggingPriority="1000" verticalHuggingPriority="1000" horizontalCompressionResistancePriority="1000" text="|" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MAR-8W-Noa" userLabel="Menu|Blog">
@@ -220,7 +220,7 @@
                                                                 <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                                             </state>
                                                             <connections>
-                                                                <action selector="blogWebsiteButtonPressed:" destination="3hN-QP-dC2" eventType="touchUpInside" id="1Zk-Ko-TwK"/>
+                                                                <action selector="blogWebsiteButtonPressed:" destination="3mK-sa-FeI" eventType="touchUpInside" id="V0q-YF-zGV"/>
                                                             </connections>
                                                         </button>
                                                     </subviews>
@@ -250,7 +250,7 @@
                                                         <fragment>
                                                             <string key="content">The intrinsic size of the Links container is set to "Placeholder" to work around a bug in Xcode 7.1, as described here: http://www.openradar.me/23234553. Without this, the lower-priority constraints that bind the leading edges of the Menu and Blog buttons to the leading edge of the container will get overridden by an IB-generated constraint that locks the width to its original value, which means we won't vacuum up the blank space when we hide the Website button for restaurants that don't have a website.</string>
                                                             <attributes>
-                                                                <font key="NSFont" metaFont="smallSystem"/>
+                                                                <font key="NSFont" metaFont="controlContent" size="11"/>
                                                                 <paragraphStyle key="NSParagraphStyle" alignment="natural" lineBreakMode="wordWrapping" baseWritingDirection="natural" tighteningFactorForTruncation="0.0"/>
                                                             </attributes>
                                                         </fragment>
@@ -299,12 +299,14 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="750" text="206-256-1499" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Dm6-AC-vcI">
-                                                    <rect key="frame" x="81" y="246" width="503" height="17.5"/>
-                                                    <fontDescription key="fontDescription" name="Helvetica" family="Helvetica" pointSize="15"/>
-                                                    <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                    <nil key="highlightedColor"/>
-                                                </label>
+                                                <button opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="1000" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="WcH-eb-STu" userLabel="Restaurant Phone Button">
+                                                    <rect key="frame" x="81" y="240" width="125" height="30"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                                                    <state key="normal" title="+1 206-555-5555"/>
+                                                    <connections>
+                                                        <action selector="phoneButtonPressed:" destination="3mK-sa-FeI" eventType="touchUpInside" id="ATI-sY-zxe"/>
+                                                    </connections>
+                                                </button>
                                                 <button opaque="NO" contentMode="scaleToFill" verticalHuggingPriority="750" contentHorizontalAlignment="left" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wjw-Qy-zah">
                                                     <rect key="frame" x="8" y="272" width="576" height="31"/>
                                                     <fontDescription key="fontDescription" name="Helvetica-Bold" family="Helvetica" pointSize="16"/>
@@ -325,8 +327,7 @@
                                                 <constraint firstAttribute="trailingMargin" secondItem="wjw-Qy-zah" secondAttribute="trailing" id="Cyh-P7-vb4"/>
                                                 <constraint firstAttribute="bottomMargin" secondItem="wjw-Qy-zah" secondAttribute="bottom" id="Fhk-ES-0b4"/>
                                                 <constraint firstItem="LSl-YQ-1lf" firstAttribute="top" secondItem="y5v-3v-drt" secondAttribute="bottom" constant="8" symbolic="YES" id="Jw7-jD-Riv"/>
-                                                <constraint firstItem="Dm6-AC-vcI" firstAttribute="leading" secondItem="esj-Pv-icX" secondAttribute="trailing" constant="8" symbolic="YES" id="KfF-3N-r4y"/>
-                                                <constraint firstItem="esj-Pv-icX" firstAttribute="baseline" secondItem="Dm6-AC-vcI" secondAttribute="baseline" id="M49-ZU-nZj"/>
+                                                <constraint firstItem="WcH-eb-STu" firstAttribute="leading" secondItem="esj-Pv-icX" secondAttribute="trailing" constant="8" symbolic="YES" id="L5u-64-uXE"/>
                                                 <constraint firstItem="8Zh-5P-6fw" firstAttribute="centerX" secondItem="wTk-Fy-fxe" secondAttribute="centerX" id="MWl-6u-DGX"/>
                                                 <constraint firstItem="Kzx-Tg-uTL" firstAttribute="trailing" secondItem="wTk-Fy-fxe" secondAttribute="trailingMargin" id="NC5-bH-aDD"/>
                                                 <constraint firstItem="y5v-3v-drt" firstAttribute="trailing" secondItem="wTk-Fy-fxe" secondAttribute="trailingMargin" id="NXz-ia-oSt"/>
@@ -336,7 +337,6 @@
                                                 <constraint firstItem="L1U-AH-4f8" firstAttribute="top" secondItem="wTk-Fy-fxe" secondAttribute="topMargin" constant="8" id="UTi-Qe-flh"/>
                                                 <constraint firstItem="DQG-iP-cm7" firstAttribute="top" secondItem="8Zh-5P-6fw" secondAttribute="bottom" constant="8" symbolic="YES" id="VMr-Z7-V0g"/>
                                                 <constraint firstItem="abz-ie-4th" firstAttribute="top" secondItem="LSl-YQ-1lf" secondAttribute="top" constant="-6" id="Voq-sz-QkM"/>
-                                                <constraint firstItem="Dm6-AC-vcI" firstAttribute="trailing" secondItem="wTk-Fy-fxe" secondAttribute="trailingMargin" id="Yyr-L4-K2W"/>
                                                 <constraint firstItem="DQG-iP-cm7" firstAttribute="leading" secondItem="wTk-Fy-fxe" secondAttribute="leadingMargin" id="aN7-XW-ZFN"/>
                                                 <constraint firstItem="esj-Pv-icX" firstAttribute="leading" secondItem="wTk-Fy-fxe" secondAttribute="leadingMargin" id="dKZ-rk-L5i"/>
                                                 <constraint firstItem="abz-ie-4th" firstAttribute="height" relation="greaterThanOrEqual" secondItem="LSl-YQ-1lf" secondAttribute="height" id="i5X-ou-fwB"/>
@@ -350,6 +350,7 @@
                                                 <constraint firstItem="EXh-Cz-lHI" firstAttribute="centerX" secondItem="wTk-Fy-fxe" secondAttribute="centerX" id="wPl-2D-A6k"/>
                                                 <constraint firstItem="abz-ie-4th" firstAttribute="leading" secondItem="LSl-YQ-1lf" secondAttribute="trailing" constant="8" symbolic="YES" id="xgr-Zg-iwh"/>
                                                 <constraint firstItem="wjw-Qy-zah" firstAttribute="leading" secondItem="wTk-Fy-fxe" secondAttribute="leadingMargin" id="xwc-oy-oGU"/>
+                                                <constraint firstItem="WcH-eb-STu" firstAttribute="top" secondItem="esj-Pv-icX" secondAttribute="top" constant="-6" id="ziY-hf-aEr"/>
                                             </constraints>
                                         </tableViewCellContentView>
                                         <connections>
@@ -367,7 +368,7 @@
                                             <outlet property="restaurantGenreLabel" destination="ERg-6W-FG7" id="sLp-xM-81C"/>
                                             <outlet property="restaurantHoursButton" destination="abz-ie-4th" id="JTE-lF-gSs"/>
                                             <outlet property="restaurantNameLabel" destination="L1U-AH-4f8" id="xfc-2n-Q9P"/>
-                                            <outlet property="restaurantPhoneLabel" destination="Dm6-AC-vcI" id="ncJ-Cc-5cJ"/>
+                                            <outlet property="restaurantPhoneButton" destination="WcH-eb-STu" id="pqa-hF-2n0"/>
                                         </connections>
                                     </tableViewCell>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="MapCell" rowHeight="316" id="C0t-Ua-D9N" customClass="RestaurantMapTableViewCell">
@@ -433,7 +434,7 @@
                                         </constraints>
                                         <state key="normal" title="Button" image="close_icon"/>
                                         <connections>
-                                            <action selector="closeButtonTapped:" destination="3mK-sa-FeI" eventType="touchUpInside" id="hQy-7z-PPn"/>
+                                            <action selector="closeButtonPressed:" destination="3mK-sa-FeI" eventType="touchUpInside" id="wUI-ev-nIy"/>
                                         </connections>
                                     </button>
                                 </subviews>

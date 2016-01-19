@@ -29,7 +29,7 @@
   self.locationService = [[LocationService alloc] init];
 
   // Start our restaurant data service.
-  self.restaurantDataService = [[DataService alloc] initWithTestMode: true];
+  self.restaurantDataService = [[DataService alloc] initWithTestMode: false];
   
   return YES;
 }
